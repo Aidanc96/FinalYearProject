@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Paper, Tabs } from "material-ui";
 import { Tab } from "material-ui/Tabs";
+
 class Footer extends Component {
 	render() {
 		return (
