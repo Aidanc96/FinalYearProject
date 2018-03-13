@@ -6,10 +6,37 @@ import MenuIcon from "material-ui-icons/Menu";
 import { withStyles } from "material-ui/styles";
 import "../css/Header.css";
 
-const styles = theme => ({
-	button: {
-		margin: theme.spacing.unit
-	},
+export default class Header extends React.Component {
+	render() {
+		return (
+			<div style={styles.root}>
+				<AppBar className="appBar" position="static">
+					<Toolbar>
+						<IconButton
+							style={styles.menuButton}
+							color="inherit"
+							aria-label="Menu"
+						>
+							<MenuIcon />
+						</IconButton>
+						<Typography variant="title" color="inherit" style={styles.flex}>
+							<Link to="/" style={styles.linkHome}>
+								AC AutoMotive
+							</Link>
+						</Typography>
+						<Button variant="raised" color="primary">
+							<Link to="/login" style={styles.link}>
+								Login
+							</Link>
+						</Button>
+					</Toolbar>
+				</AppBar>
+			</div>
+		);
+	}
+}
+
+const styles = {
 	root: {
 		flexGrow: 1
 	},
@@ -30,39 +57,4 @@ const styles = theme => ({
 		color: "inherit",
 		textDecoration: "none"
 	}
-});
-
-function Header(props) {
-	const { classes } = props;
-	return (
-		<div className={classes.root}>
-			<AppBar className="appBar" position="static">
-				<Toolbar>
-					<IconButton
-						className={classes.menuButton}
-						color="inherit"
-						aria-label="Menu"
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant="title" color="inherit" className={classes.flex}>
-						<Link to="/" className={classes.linkHome}>
-							AC AutoMotive
-						</Link>
-					</Typography>
-					<Button variant="raised" color="primary" className={classes.button}>
-						<Link to="/login" className={classes.link}>
-							Login
-						</Link>
-					</Button>
-				</Toolbar>
-			</AppBar>
-		</div>
-	);
-}
-
-Header.propTypes = {
-	classes: PropTypes.object.isRequired
 };
-
-export default withStyles(styles)(Header);
