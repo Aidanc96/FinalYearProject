@@ -6,7 +6,10 @@ import MenuIcon from "material-ui-icons/Menu";
 import { withStyles } from "material-ui/styles";
 import "../css/Header.css";
 
-const styles = {
+const styles = theme => ({
+	button: {
+		margin: theme.spacing.unit
+	},
 	root: {
 		flexGrow: 1
 	},
@@ -19,9 +22,15 @@ const styles = {
 	},
 
 	link: {
-		color: "white"
+		color: "inherit",
+		textDecoration: "none"
+	},
+
+	linkHome: {
+		color: "inherit",
+		textDecoration: "none"
 	}
-};
+});
 
 function Header(props) {
 	const { classes } = props;
@@ -37,9 +46,11 @@ function Header(props) {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="title" color="inherit" className={classes.flex}>
-						<Link to="/">AC AutoMotive</Link>
+						<Link to="/" className={classes.linkHome}>
+							AC AutoMotive
+						</Link>
 					</Typography>
-					<Button color="inherit">
+					<Button variant="raised" color="primary" className={classes.button}>
 						<Link to="/login" className={classes.link}>
 							Login
 						</Link>
