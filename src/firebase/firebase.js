@@ -8,7 +8,9 @@ var config = {
 	storageBucket: "",
 	messagingSenderId: "383961438871"
 };
-firebase.initializeApp(config);
+if (!firebase.apps.length) {
+	firebase.initializeApp(config);
+}
 
 const auth = firebase.auth();
 

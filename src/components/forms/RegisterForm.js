@@ -1,82 +1,128 @@
-import React from "react";
+import React, { Component } from "react";
 import { TextField, Button } from "material-ui";
 import Paper from "material-ui/Paper";
+import { Link, withRouter } from "react-router-dom";
 
-export default class RegisterForm extends React.Component {
-	state = {
-		data: {
-			Firstname: "",
-			Lastname: "",
-			Email: "",
-			Username: "",
-			Password: ""
-		},
-		loading: false,
-		errors: {}
-	};
+import { auth } from "../../firebase/index";
 
-	change = e => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	};
+const INITIAL_STATE = {
+	username: "",
+	email: "",
+	passwordOne: "",
+	passwordTwo: "",
+	error: null
+};
 
-	onRegister = () => {
-		console.log(this.state);
+const byPropKey = (propertyName, value) => () => ({
+	[propertyName]: value
+});
+
+class RegisterForm extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = { ...INITIAL_STATE };
+	}
+
+	onRegister = event => {
+		const { username, email, passwordOne } = this.state;
+
+		const { history } = this.props;
+
+		auth
+			.doCreateUserWithEmailAndPassword(email, passwordOne)
+			.then(authUser => {
+				this.setState(() => ({ ...INITIAL_STATE }));
+				history.push("./Login");
+			})
+			.catch(error => {
+				this.setState(byPropKey("error", error));
+			});
+		event.preventDefault();
 	};
 
 	render() {
+		const { username, email, passwordOne, passwordTwo, error } = this.state;
+
+		const isInvalid =
+			passwordOne !== passwordTwo ||
+			passwordOne === "" ||
+			email === "" ||
+			username === "";
+
 		return (
 			<div style={styles.container}>
 				<Paper style={styles.paper}>
-					<form align="center">
+					<form align="center" onRegister={this.onRegister}>
 						<TextField
-							name="Firstname"
-							id="textarea"
-							label="First Name"
-							placeholder="Enter First Name"
+							id="username"
+							label="UserName"
+							placeholder="Enter UserName"
 							multiline
 							margin="normal"
 							value={this.state.Username}
-							onChange={e => this.change(e)}
+							onChange={event =>
+								this.setState(byPropKey("username", event.target.value))
+							}
 						/>
 						<br />
 						<TextField
-							name="Lastname"
-							id="textarea"
-							label="Last Name"
-							placeholder="Enter Last Name"
+							id="email-text"
+							label="Email"
+							placeholder="Enter Email"
 							multiline
 							margin="normal"
 							value={this.state.Username}
-							onChange={e => this.change(e)}
+							onChange={event =>
+								this.setState(byPropKey("email", event.target.value))
+							}
 						/>
 						<br />
 						<TextField
-							name="Password"
-							id="password"
+							id="passwordOne"
 							label="New Password"
 							type="password"
 							placeholder="Enter New Password"
 							autoComplete="current-password"
 							margin="normal"
 							value={this.state.Password}
-							onChange={e => this.change(e)}
+							onChange={event =>
+								this.setState(byPropKey("passwordOne", event.target.value))
+							}
+						/>
+						<br />
+						<TextField
+							id="passwordTwo"
+							label="RE-Enter New Password"
+							type="password"
+							placeholder="RE-Enter New Password"
+							autoComplete="current-password"
+							margin="normal"
+							value={this.state.Password}
+							onChange={event =>
+								this.setState(byPropKey("passwordTwo", event.target.value))
+							}
 						/>
 						<br />
 						<Button
 							variant="raised"
 							color="primary"
+							type="submit"
+							disabled={isInvalid}
 							onClick={() => this.onRegister()}
 						>
 							Register
 						</Button>
+
+						{error && <p>{error.message}</p>}
 					</form>
 				</Paper>
 			</div>
 		);
 	}
 }
+
+export default withRouter(RegisterForm);
 
 const styles = {
 	container: {
