@@ -1,61 +1,80 @@
 import React from "react";
 import { TextField, Button } from "material-ui";
-
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Paper from "material-ui/Paper";
+import { auth } from "../../firebase/index";
 
-export default class LoginForm extends React.Component {
-	state = {
-		data: {
-			Username: "",
-			Password: ""
-		},
-		loading: false,
-		errors: {}
-	};
+const byPropKey = (propertyName, value) => () => ({
+	[propertyName]: value
+});
 
-	change = e => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	};
+const INITIAL_STATE = {
+	email: "",
+	password: "",
+	error: null
+};
 
-	onLogin = () => {
-		console.log(this.state);
+class LoginForm extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = { ...INITIAL_STATE };
+	}
+
+	onSubmit = event => {
+		const { email, password } = this.state;
+		auth
+			.doSignInWithEmailAndPassword(email, password)
+			.then(() => {
+				this.setState(() => ({ ...INITIAL_STATE }));
+				this.props.history.push("/");
+			})
+			.catch(error => {
+				this.setState(byPropKey("error", error));
+			});
+		event.preventDefault();
 	};
 
 	render() {
+		const { email, password, error } = this.state;
+
+		const isInvalid = password === "" || email === "";
+
 		return (
 			<div style={styles.container}>
 				<Paper elevation={4} style={styles.paper}>
-					<form align="center">
+					<form align="center" onSubmit={this.onSubmit}>
 						<TextField
-							name="Username"
-							id="textarea"
-							label="UserName"
-							placeholder="Enter UserName"
+							id="Email"
+							label="Email"
+							placeholder="Enter Email"
 							multiline
 							margin="normal"
-							value={this.state.Username}
-							onChange={e => this.change(e)}
+							value={email}
+							onChange={event =>
+								this.setState(byPropKey("email", event.target.value))
+							}
 						/>
 						<br />
 						<TextField
-							name="Password"
 							id="password"
 							label="Password"
 							type="password"
 							placeholder="Enter Password"
 							autoComplete="current-password"
 							margin="normal"
-							value={this.state.Password}
-							onChange={e => this.change(e)}
+							value={password}
+							onChange={event =>
+								this.setState(byPropKey("password", event.target.value))
+							}
 						/>
 						<br />
 						<Button
 							variant="raised"
 							color="primary"
-							onClick={() => this.onLogin()}
+							disabled={isInvalid}
+							tpye="submit"
 						>
 							Login
 						</Button>
@@ -64,12 +83,16 @@ export default class LoginForm extends React.Component {
 								Register
 							</Link>
 						</Button>
+
+						{error && <p>{error.message}</p>}
 					</form>
 				</Paper>
 			</div>
 		);
 	}
 }
+
+export default LoginForm;
 
 const styles = {
 	container: {

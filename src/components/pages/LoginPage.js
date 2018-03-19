@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import LoginForm from "../forms/LoginForm";
 
-const LoginPage = () => (
-	<div className="login-page">
+const LoginPage = ({ history }) => (
+	<div>
 		<h1>Login Page</h1>
-		<LoginForm />
+		<LoginForm history={history} />
 	</div>
 );
 

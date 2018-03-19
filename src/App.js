@@ -1,19 +1,12 @@
-import React, { Component } from "react";
-import "./App.css";
-import { Header, Footer } from "./components/Layouts";
-import { Route } from "react-router-dom";
-import HomePage from "./components/pages/HomePage";
-import LoginPage from "./components/pages/LoginPage";
-import RegisterPage from "./components/pages/RegisterPage";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import Navigation from "./Navigation";
 
 const App = () => (
-	<div>
-		<Header />
-
-		<Route path="/" exact component={HomePage} />
-		<Route path="/login" exact component={LoginPage} />
-		<Route path="/register" exact component={RegisterPage} />
-	</div>
+	<Router>
+		<Navigation />
+	</Router>
 );
 
 export default App;

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { TextField, Button } from "material-ui";
 import Paper from "material-ui/Paper";
-import { Link, withRouter } from "react-router-dom";
 
 import { auth } from "../../firebase/index";
 
@@ -24,16 +23,14 @@ class RegisterForm extends React.Component {
 		this.state = { ...INITIAL_STATE };
 	}
 
-	onRegister = event => {
+	onSubmit = event => {
 		const { username, email, passwordOne } = this.state;
-
-		const { history } = this.props;
 
 		auth
 			.doCreateUserWithEmailAndPassword(email, passwordOne)
 			.then(authUser => {
 				this.setState(() => ({ ...INITIAL_STATE }));
-				history.push("./Login");
+				this.props.history.push("/login");
 			})
 			.catch(error => {
 				this.setState(byPropKey("error", error));
@@ -53,14 +50,14 @@ class RegisterForm extends React.Component {
 		return (
 			<div style={styles.container}>
 				<Paper style={styles.paper}>
-					<form align="center" onRegister={this.onRegister}>
+					<form onSubmit={this.onSubmit} align="center">
 						<TextField
 							id="username"
 							label="UserName"
 							placeholder="Enter UserName"
 							multiline
 							margin="normal"
-							value={this.state.Username}
+							value={username}
 							onChange={event =>
 								this.setState(byPropKey("username", event.target.value))
 							}
@@ -72,7 +69,7 @@ class RegisterForm extends React.Component {
 							placeholder="Enter Email"
 							multiline
 							margin="normal"
-							value={this.state.Username}
+							value={email}
 							onChange={event =>
 								this.setState(byPropKey("email", event.target.value))
 							}
@@ -85,7 +82,7 @@ class RegisterForm extends React.Component {
 							placeholder="Enter New Password"
 							autoComplete="current-password"
 							margin="normal"
-							value={this.state.Password}
+							value={passwordOne}
 							onChange={event =>
 								this.setState(byPropKey("passwordOne", event.target.value))
 							}
@@ -98,7 +95,7 @@ class RegisterForm extends React.Component {
 							placeholder="RE-Enter New Password"
 							autoComplete="current-password"
 							margin="normal"
-							value={this.state.Password}
+							value={passwordTwo}
 							onChange={event =>
 								this.setState(byPropKey("passwordTwo", event.target.value))
 							}
@@ -109,7 +106,6 @@ class RegisterForm extends React.Component {
 							color="primary"
 							type="submit"
 							disabled={isInvalid}
-							onClick={() => this.onRegister()}
 						>
 							Register
 						</Button>
@@ -122,7 +118,7 @@ class RegisterForm extends React.Component {
 	}
 }
 
-export default withRouter(RegisterForm);
+export default RegisterForm;
 
 const styles = {
 	container: {

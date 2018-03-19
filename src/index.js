@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { MuiThemeProvider } from "material-ui/styles";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
+import { createBrowserHistory } from "history";
+
+const hist = createBrowserHistory();
+
 ReactDOM.render(
-	<MuiThemeProvider>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</MuiThemeProvider>,
+	<Router history={hist}>
+		<App />
+	</Router>,
+
 	document.getElementById("root")
 );
 
