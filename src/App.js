@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 import LandingPage from "./components/pages/LandingPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
-import PasswordForgetPage from "./components/password/PasswordForget";
+import PasswordForgetPage from "./components/password/PasswordForgetPage";
 import HomePage from "./components/pages/HomePage";
 import AccountPage from "./components/pages/AccountPage";
 
