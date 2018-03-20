@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import LoginForm from "../forms/LoginForm";
+import { withRouter, Link } from "react-router-dom";
+import { auth } from "../../firebase/index";
+
+import * as routes from "../../constants/routes";
 
 const LoginPage = ({ history }) => (
 	<div>
@@ -8,4 +12,4 @@ const LoginPage = ({ history }) => (
 	</div>
 );
 
-export default LoginPage;
+export default withRouter(LoginPage);

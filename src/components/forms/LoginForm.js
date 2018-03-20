@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { TextField, Button } from "material-ui";
-import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Paper from "material-ui/Paper";
 import { auth } from "../../firebase/index";
+
+import * as routes from "../../constants/routes";
 
 const byPropKey = (propertyName, value) => () => ({
 	[propertyName]: value
@@ -24,11 +25,14 @@ class LoginForm extends React.Component {
 
 	onSubmit = event => {
 		const { email, password } = this.state;
+
+		const { history } = this.props;
+
 		auth
 			.doSignInWithEmailAndPassword(email, password)
 			.then(() => {
 				this.setState(() => ({ ...INITIAL_STATE }));
-				this.props.history.push("/");
+				history.push("routes.Home");
 			})
 			.catch(error => {
 				this.setState(byPropKey("error", error));
@@ -74,7 +78,7 @@ class LoginForm extends React.Component {
 							variant="raised"
 							color="primary"
 							disabled={isInvalid}
-							tpye="submit"
+							type="submit"
 						>
 							Login
 						</Button>

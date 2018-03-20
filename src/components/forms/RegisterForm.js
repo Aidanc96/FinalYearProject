@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { TextField, Button } from "material-ui";
 import Paper from "material-ui/Paper";
-
+import { Link, withRouter } from "react-router-dom";
 import { auth } from "../../firebase/index";
+
+import * as routes from "../../constants/routes";
 
 const INITIAL_STATE = {
 	username: "",
@@ -26,11 +28,13 @@ class RegisterForm extends React.Component {
 	onSubmit = event => {
 		const { username, email, passwordOne } = this.state;
 
+		const { history } = this.props;
+
 		auth
 			.doCreateUserWithEmailAndPassword(email, passwordOne)
 			.then(authUser => {
 				this.setState(() => ({ ...INITIAL_STATE }));
-				this.props.history.push("/login");
+				history.push("routes.HOME");
 			})
 			.catch(error => {
 				this.setState(byPropKey("error", error));

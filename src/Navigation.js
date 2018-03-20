@@ -1,34 +1,43 @@
-import React, { Component } from "react";
-import "./App.css";
-import { Header, Footer } from "./components/Layouts";
-import { Route } from "react-router-dom";
-import HomePage from "./components/pages/HomePage";
-import LoginPage from "./components/pages/LoginPage";
-import RegisterPage from "./components/pages/RegisterPage";
-import AccountPage from "./components/pages/AccountPage";
-import LogOutButton from "./components/logOut/logOut.js";
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const Navigation = ({ authUser }) => (
+import LogOutButton from "./components/logOut/logOut.js";
+import * as routes from "./constants/routes";
+
+const Navigation = (props, { authUser }) => (
 	<div>{authUser ? <LoggedInAuth /> : <LogInAuth />}</div>
 );
 
-const LoggedInAuth = () => (
-	<div>
-		<Header />
+Navigation.contextTypes = {
+	authUser: PropTypes.object
+};
 
-		<Route path="/" exact component={HomePage} />
-		<Route path="/account" exact component={AccountPage} />
-		<LogOutButton />
-	</div>
+const LoggedInAuth = () => (
+	<ul>
+		<li>
+			<Link to={routes.LANDING}>Landing</Link>
+		</li>
+		<li>
+			<Link to={routes.HOME}>Home</Link>
+		</li>
+		<li>
+			<Link to={routes.ACCOUNT}>Account</Link>
+		</li>
+		<li>
+			<LogOutButton />
+		</li>
+	</ul>
 );
 
 const LogInAuth = () => (
-	<div>
-		<Header />
-
-		<Route path="/" exact component={HomePage} />
-		<Route path="/login" exact component={LoginPage} />
-		<Route path="/register" exact component={RegisterPage} />
-	</div>
+	<ul>
+		<li>
+			<Link to={routes.LANDING}>Landing</Link>
+		</li>
+		<li>
+			<Link to={routes.LOGIN}>Login</Link>
+		</li>
+	</ul>
 );
 export default Navigation;
