@@ -5,10 +5,11 @@ import PasswordForgetForm from "../forms/PasswordForgetForm";
 import PasswordChangeForm from "../password/PasswordChange";
 
 const AccountPage = (props, { authUser }) => (
-	<div>
-		<h1 align="center">Account Settings</h1>
+	<div align="center">
+		<h1>Account Settings</h1>
 		<h1>Account: {authUser.email}</h1>
 		<PasswordForgetForm />
+		<br />
 		<PasswordChangeForm />
 	</div>
 );
