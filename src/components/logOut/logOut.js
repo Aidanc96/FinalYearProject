@@ -8,17 +8,18 @@ class LogOut extends React.Component {
 		super(props);
 	}
 
-	onSubmit = event => {
+	onClick = event => {
 		const { history } = this.props;
 
 		auth.doSignOut();
-		history.push("routes.LOGIN");
+		history.push(routes.LOGIN);
+		event.preventDefault();
 	};
 
 	render() {
 		return (
 			<div>
-				<button type="button" onClick={this.onSubmit}>
+				<button type="button" onClick={this.onClick}>
 					Logout
 				</button>
 			</div>

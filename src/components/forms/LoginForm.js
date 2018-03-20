@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
 			.doSignInWithEmailAndPassword(email, password)
 			.then(() => {
 				this.setState(() => ({ ...INITIAL_STATE }));
-				history.push("routes.Home");
+				history.push(routes.HOME);
 			})
 			.catch(error => {
 				this.setState(byPropKey("error", error));

@@ -34,7 +34,7 @@ class RegisterForm extends React.Component {
 			.doCreateUserWithEmailAndPassword(email, passwordOne)
 			.then(authUser => {
 				this.setState(() => ({ ...INITIAL_STATE }));
-				history.push("routes.HOME");
+				history.push(routes.HOME);
 			})
 			.catch(error => {
 				this.setState(byPropKey("error", error));
