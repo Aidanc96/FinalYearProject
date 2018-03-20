@@ -8,7 +8,6 @@ const AccountPage = (props, { authUser }) => (
 	<div align="center">
 		<h1>Account Settings</h1>
 		<h1>Account: {authUser.email}</h1>
-		<PasswordForgetForm />
 		<br />
 		<PasswordChangeForm />
 	</div>

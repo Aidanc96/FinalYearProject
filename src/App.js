@@ -9,12 +9,16 @@ import PasswordForgetPage from "./components/password/PasswordForgetPage";
 import HomePage from "./components/pages/HomePage";
 import AccountPage from "./components/pages/AccountPage";
 
+import Header from "./components/Layouts/Header";
+
 import * as routes from "./constants/routes";
 import withAuthentication from "./components/authentication/withAuthentication";
 
 const App = () => (
 	<Router>
 		<div>
+			<Header />
+
 			<Navigation />
 
 			<hr />

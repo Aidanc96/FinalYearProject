@@ -6,7 +6,7 @@ import { PasswordForgetLink } from "../forms/PasswordForgetForm";
 import * as routes from "../../constants/routes";
 
 const LoginPage = ({ history }) => (
-	<div>
+	<div align="center">
 		<h1>Login Page</h1>
 		<LoginForm history={history} />
 		<PasswordForgetLink />
