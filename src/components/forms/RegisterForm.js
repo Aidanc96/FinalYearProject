@@ -56,6 +56,7 @@ class RegisterForm extends React.Component {
 				<Paper style={styles.paper}>
 					<form onSubmit={this.onSubmit} align="center">
 						<TextField
+							style={styles.username}
 							id="username"
 							label="UserName"
 							placeholder="Enter UserName"
@@ -68,6 +69,7 @@ class RegisterForm extends React.Component {
 						/>
 						<br />
 						<TextField
+							style={styles.email}
 							id="email-text"
 							label="Email"
 							placeholder="Enter Email"
@@ -80,6 +82,7 @@ class RegisterForm extends React.Component {
 						/>
 						<br />
 						<TextField
+							style={styles.passwordOne}
 							id="passwordOne"
 							label="New Password"
 							type="password"
@@ -93,6 +96,7 @@ class RegisterForm extends React.Component {
 						/>
 						<br />
 						<TextField
+							style={styles.passwordTwo}
 							id="passwordTwo"
 							label="RE-Enter New Password"
 							type="password"
@@ -135,5 +139,17 @@ const styles = {
 	registerBtn: {
 		textDecoration: "none",
 		color: "white"
+	},
+	username: {
+		width: 200
+	},
+	email: {
+		width: 200
+	},
+	passswordOne: {
+		width: 200
+	},
+	passwordTwo: {
+		width: 200
 	}
 };

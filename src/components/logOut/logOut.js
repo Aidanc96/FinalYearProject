@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { auth } from "../../firebase/index";
 import * as routes from "../../constants/routes";
+import { Button } from "material-ui";
 
 class LogOut extends React.Component {
 	constructor(props) {
@@ -19,9 +20,14 @@ class LogOut extends React.Component {
 	render() {
 		return (
 			<div>
-				<button type="button" onClick={this.onClick}>
+				<Button
+					variant="raised"
+					color="secondary"
+					type="button"
+					onClick={this.onClick}
+				>
 					Logout
-				</button>
+				</Button>
 			</div>
 		);
 	}

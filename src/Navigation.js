@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import LogOutButton from "./components/logOut/logOut.js";
 import * as routes from "./constants/routes";
 
+import { Button } from "material-ui";
+
 const Navigation = (props, { authUser }) => (
 	<div>{authUser ? <LoggedInAuth /> : <LogInAuth />}</div>
 );
@@ -14,30 +16,53 @@ Navigation.contextTypes = {
 };
 
 const LoggedInAuth = () => (
-	<ul>
-		<li>
-			<Link to={routes.LANDING}>Landing</Link>
-		</li>
-		<li>
-			<Link to={routes.HOME}>Home</Link>
-		</li>
-		<li>
-			<Link to={routes.ACCOUNT}>Account</Link>
-		</li>
-		<li>
-			<LogOutButton />
-		</li>
-	</ul>
+	<div style={styles.menu}>
+		<Link to={routes.LANDING} style={styles.link}>
+			<Button variant="raised" color="primary">
+				Home
+			</Button>
+		</Link>
+
+		<Link to={routes.HOME} style={styles.link}>
+			<Button variant="raised" color="primary">
+				Profile
+			</Button>
+		</Link>
+
+		<Link to={routes.ACCOUNT} style={styles.link}>
+			<Button variant="raised" color="primary">
+				Settings
+			</Button>
+		</Link>
+
+		<LogOutButton />
+	</div>
 );
 
 const LogInAuth = () => (
-	<ul>
-		<li>
-			<Link to={routes.LANDING}>Landing</Link>
-		</li>
-		<li>
-			<Link to={routes.LOGIN}>Login</Link>
-		</li>
-	</ul>
+	<div>
+		<Link to={routes.LANDING} style={styles.link}>
+			<Button variant="raised" color="primary">
+				Home
+			</Button>
+		</Link>
+
+		<Link to={routes.LOGIN} style={styles.link}>
+			<Button variant="raised" color="primary">
+				Login
+			</Button>
+		</Link>
+	</div>
 );
+
+const styles = {
+	link: {
+		color: "inherit",
+		textDecoration: "none"
+	},
+	menu: {
+		display: "flex",
+		flexDirection: "row"
+	}
+};
 export default Navigation;

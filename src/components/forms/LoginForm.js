@@ -50,6 +50,7 @@ class LoginForm extends React.Component {
 				<Paper elevation={4} style={styles.paper}>
 					<form align="center" onSubmit={this.onSubmit}>
 						<TextField
+							style={styles.email}
 							id="Email"
 							label="Email"
 							placeholder="Enter Email"
@@ -62,6 +63,7 @@ class LoginForm extends React.Component {
 						/>
 						<br />
 						<TextField
+							style={styles.password}
 							id="password"
 							label="Password"
 							type="password"
@@ -109,5 +111,11 @@ const styles = {
 	registerBtn: {
 		textDecoration: "none",
 		color: "white"
+	},
+	email: {
+		width: 200
+	},
+	password: {
+		width: 200
 	}
 };

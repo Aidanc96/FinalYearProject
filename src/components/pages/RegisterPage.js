@@ -7,7 +7,7 @@ import * as routes from "../../constants/routes";
 
 const RegisterPage = ({ history }) => (
 	<div>
-		<h1>Register Page</h1>
+		<h1 align="center">Register Page</h1>
 		<RegisterForm history={history} />
 	</div>
 );

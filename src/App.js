@@ -19,9 +19,7 @@ const App = () => (
 		<div>
 			<Header />
 
-			<Navigation />
-
-			<hr />
+			<br />
 
 			<Route exact path={routes.LANDING} component={() => <LandingPage />} />
 			<Route exact path={routes.REGISTER} component={() => <RegisterPage />} />

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import { TextField, Button } from "material-ui";
+import Paper from "material-ui/Paper";
+
 import { auth } from "../../firebase/firebase";
 
 const byPropKey = (propertyName, value) => () => ({
@@ -40,31 +43,57 @@ class PasswordChangeForm extends Component {
 		const isInvalid = passwordOne !== passwordTwo || passwordOne === "";
 
 		return (
-			<form onSubmit={this.onSubmit}>
-				<input
-					value={passwordOne}
-					onChange={event =>
-						this.setState(byPropKey("passwordOne", event.target.value))
-					}
-					type="password"
-					placeholder="New Password"
-				/>
-				<input
-					value={passwordTwo}
-					onChange={event =>
-						this.setState(byPropKey("passwordTwo", event.target.value))
-					}
-					type="password"
-					placeholder="Confirm New Password"
-				/>
-				<button disabled={isInvalid} type="submit">
-					Reset My Password
-				</button>
+			<Paper style={styles.change}>
+				<p>Change Password</p>
+				<form onSubmit={this.onSubmit}>
+					<TextField
+						value={passwordOne}
+						onChange={event =>
+							this.setState(byPropKey("passwordOne", event.target.value))
+						}
+						autoComplete="current-password"
+						margin="normal"
+						type="password"
+						placeholder="New Password"
+					/>
 
-				{error && <p>{error.message}</p>}
-			</form>
+					<br />
+
+					<TextField
+						value={passwordTwo}
+						onChange={event =>
+							this.setState(byPropKey("passwordTwo", event.target.value))
+						}
+						autoComplete="current-password"
+						margin="normal"
+						type="password"
+						placeholder="Confirm New Password"
+						helperText="Minimum of 6 characters"
+					/>
+
+					<br />
+
+					<Button
+						variant="raised"
+						color="primary"
+						disabled={isInvalid}
+						type="submit"
+					>
+						Reset My Password
+					</Button>
+
+					{error && <p>{error.message}</p>}
+				</form>
+			</Paper>
 		);
 	}
 }
 
 export default PasswordChangeForm;
+
+const styles = {
+	change: {
+		width: 350,
+		padding: 20
+	}
+};

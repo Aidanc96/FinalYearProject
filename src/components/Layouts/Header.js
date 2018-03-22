@@ -6,6 +6,8 @@ import MenuIcon from "material-ui-icons/Menu";
 import { withStyles } from "material-ui/styles";
 import "../css/Header.css";
 
+import Navigation from "../../Navigation";
+
 export default class Header extends React.Component {
 	render() {
 		return (
@@ -24,11 +26,7 @@ export default class Header extends React.Component {
 								AC AutoMotive
 							</Link>
 						</Typography>
-						<Button variant="raised" color="primary">
-							<Link to="/login" style={styles.link}>
-								Login
-							</Link>
-						</Button>
+						<Navigation />
 					</Toolbar>
 				</AppBar>
 			</div>
@@ -37,9 +35,7 @@ export default class Header extends React.Component {
 }
 
 const styles = {
-	root: {
-		flexGrow: 1
-	},
+	root: {},
 	flex: {
 		flex: 1
 	},

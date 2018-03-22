@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { TextField, Button } from "material-ui";
+import Paper from "material-ui/Paper";
+
 import { auth } from "../../firebase";
 
 const byPropKey = (propertyName, value) => () => ({
@@ -40,21 +43,31 @@ class PasswordForgetForm extends Component {
 		const isInvalid = email === "";
 
 		return (
-			<form onSubmit={this.onSubmit}>
-				<input
-					value={this.state.email}
-					onChange={event =>
-						this.setState(byPropKey("email", event.target.value))
-					}
-					type="text"
-					placeholder="Email Address"
-				/>
-				<button disabled={isInvalid} type="submit">
-					Reset My Password
-				</button>
+			<div style={styles.container}>
+				<Paper align="center" style={styles.forget}>
+					<form onSubmit={this.onSubmit}>
+						<TextField
+							value={this.state.email}
+							onChange={event =>
+								this.setState(byPropKey("email", event.target.value))
+							}
+							type="text"
+							placeholder="Email Address"
+						/>
 
-				{error && <p>{error.message}</p>}
-			</form>
+						<Button
+							variant="raised"
+							color="primary"
+							disabled={isInvalid}
+							type="submit"
+						>
+							Reset My Password
+						</Button>
+
+						{error && <p>{error.message}</p>}
+					</form>
+				</Paper>
+			</div>
 		);
 	}
 }
@@ -68,3 +81,14 @@ const PasswordForgetLink = () => (
 export default PasswordForgetForm;
 
 export { PasswordForgetLink };
+
+const styles = {
+	container: {
+		width: 300,
+		margin: "auto"
+	},
+
+	forget: {
+		padding: 10
+	}
+};
