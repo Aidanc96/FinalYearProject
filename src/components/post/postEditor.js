@@ -1,21 +1,53 @@
 import React, { Component } from "react";
 import { TextField, Button } from "material-ui";
-import FileUpload from "material-ui-icons/FileUpload";
+import FileUpload from "./fileUpload";
 import Paper from "material-ui/Paper";
 import Card, { CardActions, CardContent } from "material-ui/Card";
-import { db } from "../../firebase";
+import { db, firebase, storage } from "../../firebase";
 
 class PostEditor extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			newPostBody: ""
+			newPostBody: "",
+			photos: []
 		};
 
 		this.handlePostInputChange = this.handlePostInputChange.bind(this);
+		this.handleUpload = this.handleUpload.bind(this);
 		this.createPost = this.createPost.bind(this);
 	}
+
+	handleUpload = event => {
+		const file = event.target.files[0];
+		const storage = firebase.storage().ref("/photo/" + file.name);
+		const task = storage.put(file);
+
+		task.on(
+			//		"state_changed",
+			//		snapshot => {
+			///		let percentage = snapshot.bytesTranferred / snapshot.totalBytes * 100;
+			//		this.setState({
+			//		uploadValue: percentage
+			//	});
+			//	},
+			error => {
+				console.log(error.message);
+			},
+			() => {
+				const record = {
+					photoURL: this.state.authUser.photoURL,
+					displayName: this.state.authUser.displayName,
+					image: task.snapshot.downloadURL
+				};
+
+				const db = firebase.database().ref("photo");
+				const newPhoto = db.push();
+				newPhoto.set(record);
+			}
+		);
+	};
 
 	handlePostInputChange(event) {
 		this.setState({
@@ -43,10 +75,7 @@ class PostEditor extends Component {
 						value={this.state.newPostBody}
 						onChange={this.handlePostInputChange}
 					/>
-					<Button variant="raised" color="default">
-						Upload
-						<FileUpload />
-					</Button>
+					<FileUpload onUpload={this.handleUpload} />
 
 					<Button
 						className="btn-post"

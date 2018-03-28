@@ -1,36 +1,35 @@
 import React, { Component } from "react";
 
+import firebase from "firebase";
+
 import "../css/homePage.css";
+import Card, { CardActions, CardContent } from "material-ui/Card";
 
 import FeedDisplay from "../feed/feedDisplay";
 import withAuthorization from "../authorization/withAuthorization";
 import { db } from "../../firebase";
+import FileUploader from "react-firebase-file-uploader";
 
 class HomePage extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			users: null
+			users: null,
+			isUploading: false,
+			progress: 0,
+			avatarURL: ""
 		};
 	}
-
-	componentDidMount() {
-		db
-			.onceGetUsers()
-			.then(snapshot => this.setState(() => ({ users: snapshot.val() })));
-	}
-
 	render() {
 		const { users } = this.state;
 		return (
 			<div>
-				<h1 align="center">Profile</h1>
+				<h1 align="center">Home</h1>
 				<p align="center">This can be seen by logged in users</p>
 				{!!users && <UserList users={users} />}
 
 				<br />
-				<FeedDisplay />
 			</div>
 		);
 	}

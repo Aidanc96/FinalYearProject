@@ -9,6 +9,13 @@ import "../css/Header.css";
 import Navigation from "../../Navigation";
 
 export default class Header extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			authUser: null
+		};
+	}
 	render() {
 		return (
 			<div style={styles.root}>
@@ -26,7 +33,7 @@ export default class Header extends React.Component {
 								AC AutoMotive
 							</Link>
 						</Typography>
-						<Navigation />
+						<Navigation authUser={this.state.authUser} />
 					</Toolbar>
 				</AppBar>
 			</div>
