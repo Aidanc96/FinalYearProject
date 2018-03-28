@@ -55,6 +55,8 @@ const LogInAuth = () => (
 	</div>
 );
 
+export default Navigation;
+
 const styles = {
 	link: {
 		color: "inherit",
@@ -65,4 +67,3 @@ const styles = {
 		flexDirection: "row"
 	}
 };
-export default Navigation;

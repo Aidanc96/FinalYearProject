@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { TextField, Button } from "material-ui";
 import Paper from "material-ui/Paper";
 import { Link, withRouter } from "react-router-dom";
-import { auth } from "../../firebase/index";
+
+import { auth, db } from "../../firebase";
 
 import * as routes from "../../constants/routes";
 
@@ -21,7 +22,6 @@ const byPropKey = (propertyName, value) => () => ({
 class RegisterForm extends React.Component {
 	constructor(props) {
 		super(props);
-
 		this.state = { ...INITIAL_STATE };
 	}
 
@@ -31,10 +31,17 @@ class RegisterForm extends React.Component {
 		const { history } = this.props;
 
 		auth
-			.doCreateUserWithEmailAndPassword(email, passwordOne)
+			.CreateUser(email, passwordOne)
 			.then(authUser => {
-				this.setState(() => ({ ...INITIAL_STATE }));
-				history.push(routes.HOME);
+				db
+					.doCreateUser(authUser.uid, username, email)
+					.then(() => {
+						this.setState(() => ({ ...INITIAL_STATE }));
+						history.push(routes.HOME);
+					})
+					.catch(error => {
+						this.setState(byPropKey("error", error));
+					});
 			})
 			.catch(error => {
 				this.setState(byPropKey("error", error));
@@ -126,7 +133,7 @@ class RegisterForm extends React.Component {
 	}
 }
 
-export default RegisterForm;
+export default withRouter(RegisterForm);
 
 const styles = {
 	container: {

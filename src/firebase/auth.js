@@ -1,9 +1,9 @@
-import { auth } from "./firebase";
+import { db, auth } from "./firebase";
 
-export const doCreateUserWithEmailAndPassword = (email, password) =>
+export const CreateUser = (email, password) =>
 	auth.createUserWithEmailAndPassword(email, password);
 
-export const doSignInWithEmailAndPassword = (email, password) =>
+export const SignInUser = (email, password) =>
 	auth.signInWithEmailAndPassword(email, password);
 
 export const doSignOut = () => auth.signOut();

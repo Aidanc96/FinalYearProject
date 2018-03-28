@@ -29,7 +29,7 @@ class LoginForm extends React.Component {
 		const { history } = this.props;
 
 		auth
-			.doSignInWithEmailAndPassword(email, password)
+			.SignInUser(email, password)
 			.then(() => {
 				this.setState(() => ({ ...INITIAL_STATE }));
 				history.push(routes.HOME);
