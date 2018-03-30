@@ -1,6 +1,6 @@
 import React from "react";
-import Paper from "material-ui/Paper";
-import Card, { CardActions, CardContent } from "material-ui/Card";
+
+import Card, { CardContent } from "material-ui/Card";
 
 const Post = props => (
 	<Card className="post-received">

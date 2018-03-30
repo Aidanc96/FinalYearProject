@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import LoginForm from "../forms/LoginForm";
-import { withRouter, Link } from "react-router-dom";
-import { auth } from "../../firebase/index";
+import { withRouter } from "react-router-dom";
+
 import { PasswordForgetLink } from "../forms/PasswordForgetForm";
-import * as routes from "../../constants/routes";
 
 const LoginPage = ({ history }) => (
 	<div align="center">

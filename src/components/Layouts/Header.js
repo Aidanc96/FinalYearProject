@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { AppBar, Toolbar, Typography, IconButton, Button } from "material-ui";
+import React from "react";
+
+import { AppBar, Toolbar, Typography, IconButton } from "material-ui";
 import { Link } from "react-router-dom";
 import MenuIcon from "material-ui-icons/Menu";
-import { withStyles } from "material-ui/styles";
+
 import "../css/Header.css";
 
 import Navigation from "../../Navigation";

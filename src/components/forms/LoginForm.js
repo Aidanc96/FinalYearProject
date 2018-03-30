@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { TextField, Button } from "material-ui";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Paper from "material-ui/Paper";
 import { auth } from "../../firebase/index";
 

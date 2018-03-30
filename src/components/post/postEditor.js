@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { TextField, Button } from "material-ui";
 import FileUpload from "./fileUpload";
-import Paper from "material-ui/Paper";
-import Card, { CardActions, CardContent } from "material-ui/Card";
+
+import Card, { CardContent } from "material-ui/Card";
 import { db, firebase, storage } from "../../firebase";
 
 class PostEditor extends Component {

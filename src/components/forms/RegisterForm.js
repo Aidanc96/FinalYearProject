@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { TextField, Button } from "material-ui";
 import Paper from "material-ui/Paper";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { auth, db } from "../../firebase";
 

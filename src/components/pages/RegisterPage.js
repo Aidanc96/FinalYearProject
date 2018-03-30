@@ -1,9 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import RegisterForm from "../forms/RegisterForm";
-import { Link, withRouter } from "react-router-dom";
-import { auth } from "../../firebase/index";
-
-import * as routes from "../../constants/routes";
+import { withRouter } from "react-router-dom";
 
 const RegisterPage = ({ history }) => (
 	<div>

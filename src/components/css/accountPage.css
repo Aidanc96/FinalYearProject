@@ -31,7 +31,7 @@
 
 .avatar {
 	width: 400px;
-	height: 400px;
+	height: 420px;
 	position: absolute;
 	top: 15%;
 	right: 0;
@@ -43,6 +43,10 @@
 }
 
 .accountPageText {
-	position: absolute;
-	left: 500px;
+}
+
+.avatar-image {
+	max-width: 350px;
+	max-height: 330px;
+	margin: 0 auto;
 }
