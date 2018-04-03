@@ -44,8 +44,8 @@ class PasswordChangeForm extends Component {
 
 		return (
 			<Paper style={styles.change}>
-				<p>Change Password</p>
-				<form onSubmit={this.onSubmit}>
+				<form onSubmit={this.onSubmit} align="center">
+					<p>Change Password</p>
 					<TextField
 						value={passwordOne}
 						onChange={event =>
@@ -93,7 +93,10 @@ export default PasswordChangeForm;
 
 const styles = {
 	change: {
-		width: 350,
-		padding: 20
+		position: "absolute",
+		width: 300,
+		padding: 20,
+		left: "80%",
+		top: "65%"
 	}
 };

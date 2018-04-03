@@ -67,8 +67,8 @@ class FeedDisplay extends Component {
 	render() {
 		return (
 			<div>
-				<Post {...this.props} />
 				<PostEditor addPost={this.addPost} />
+				<Post {...this.props} />
 			</div>
 		);
 	}
