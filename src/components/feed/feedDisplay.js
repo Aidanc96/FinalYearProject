@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 
+import firebase from "firebase";
 import Post from "../post/post";
 import PostEditor from "../post/postEditor";
-
+import { db, auth } from "../../firebase";
+import Button from "material-ui/Button";
 class FeedDisplay extends Component {
 	constructor(props) {
 		super(props);
@@ -10,23 +12,62 @@ class FeedDisplay extends Component {
 		this.addPost = this.addPost.bind(this);
 
 		this.state = {
-			posts: []
+			postBody: [],
+			postText: [],
+			postImages: [],
+			postHeader: [],
+			temp: ""
 		};
 	}
 
-	addPost(newPostBody) {
-		const newState = Object.assign({}, this.state);
-		newState.posts.push(newPostBody);
-		this.setState(newState);
+	//	componentWillMount = () => {
+	//		const { updateLocalState } = this;
+	//	firebase
+	//		.database()
+	//		.ref("posting/" + firebase.auth().currentUser.uid)
+	//		.on("child_added", snapshot => {
+	//			const response = snapshot.val();
+	//		updateLocalState(response);
+	//	});
+	//	};
+
+	//	updateLocalState(response) {
+	//const postBody = this.state.postBody;
+	//	const postText = this.state.postText;
+	//		const postImages = this.state.postImages;
+	//	const postHeader = this.state.postHeader;
+	//	const brokenDownPostBody = response.postBody;
+	//	const brokenDownPostHeader = response.postHeader;
+	//	const brokenDownPostImages = response.postImages;
+	//		const brokenDownPostText = response.postText.split(/[\r\n]/g);
+	//	postBody.push(brokenDownPostBody),
+	//		postText.push(brokenDownPostText),
+	//	postImages.push(brokenDownPostImages),
+	//		postHeader.push(brokenDownPostHeader);
+	//	this.setState({
+	//	postBody: postBody,
+	//		postText: postText,
+	//	postImages: postImages,
+	//			postHeader: postHeader
+	//	});
+	//	}
+
+	onClick = e => {
+		this.setState({ temp: "lmao" });
+	};
+	addPost(postImages, postText) {
+		const postToSave = { postImages, postText };
+		firebase
+			.database()
+			.ref("posting/" + firebase.auth().currentUser.uid + "/")
+			.push()
+			.set(postToSave);
 	}
 
 	render() {
 		return (
 			<div>
-				{this.state.posts.map((postBody, idx) => {
-					return <Post key={idx} postBody={postBody} />;
-				})}
-
+				<Post {...this.props} />
 				<PostEditor addPost={this.addPost} />
 			</div>
 		);

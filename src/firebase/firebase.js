@@ -1,4 +1,5 @@
 import * as firebase from "firebase";
+require("firebase/firestore");
 
 var config = {
 	apiKey: "AIzaSyAi39N_YePWXuPf-hwHdY1Xo-0PceEb2u8",
@@ -8,6 +9,7 @@ var config = {
 	storageBucket: "ac-automotive.appspot.com",
 	messagingSenderId: "383961438871"
 };
+
 if (!firebase.apps.length) {
 	firebase.initializeApp(config);
 }
@@ -15,5 +17,6 @@ if (!firebase.apps.length) {
 const auth = firebase.auth();
 const db = firebase.database();
 const storage = firebase.storage();
+const cloud = firebase.firestore();
 
 export { db, auth, firebase, storage };

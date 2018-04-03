@@ -15,27 +15,27 @@ class HomePage extends Component {
 
 	componentDidMount() {
 		db
-			.onceGetUsers()
-			.then(snapshot => this.setState(() => ({ users: snapshot.val() })));
+			.onceGetPosts()
+			.then(snapshot => this.setState(() => ({ posts: snapshot.val() })));
 	}
 
 	render() {
-		const { users } = this.state;
+		const { posts } = this.state;
 		return (
 			<div>
 				<h1 align="center">Home</h1>
 				<p align="center">This can be seen by logged in users</p>
-				{!!users && <UserList users={users} />}
+				{!!posts && <PostsList posts={posts} />}
 			</div>
 		);
 	}
 }
-const UserList = ({ users }) => (
+const PostsList = ({ posts }) => (
 	<div>
 		<h2>List of Usernames of Users</h2>
 		<p>(Saved on Sign Up in Firebase Database)</p>
 
-		{Object.keys(users).map(key => <div key={key}>{users[key].avatarURL}</div>)}
+		{Object.keys(posts).map(key => <div key={key}>{posts[key].username}</div>)}
 	</div>
 );
 

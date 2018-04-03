@@ -7,6 +7,8 @@ import PasswordForgetForm from "../forms/PasswordForgetForm";
 import PasswordChangeForm from "../password/PasswordChange";
 import withAuthorization from "../authorization/withAuthorization";
 
+import Post from "../post/post";
+
 import firebase from "firebase";
 import Card, { CardActions, CardContent } from "material-ui/Card";
 import FeedDisplay from "../feed/feedDisplay";
@@ -57,7 +59,6 @@ class AccountPage extends React.Component {
 			.update({
 				avatarURL: this.state.avatarURL
 			});
-		console.log("after " + this.state.avatarURL);
 	};
 
 	componentDidMount() {
@@ -112,7 +113,7 @@ class AccountPage extends React.Component {
 					</CardContent>
 				</Card>
 
-				<FeedDisplay />
+				<FeedDisplay {...this.state} />
 			</div>
 		);
 	}

@@ -1,9 +1,26 @@
 import { db } from "./firebase";
 
-export const doCreateUser = (id, username, email) =>
+export const doCreateUser = (id, username, email, avatarURL) =>
 	db.ref(`users/${id}`).set({
 		username,
-		email
+		email,
+		avatarURL
 	});
 
 export const onceGetUsers = () => db.ref("users").once("value");
+
+export const onceGetPosts = () => db.ref("posts").once("value");
+
+export const doCreatePostUser = (
+	id,
+	username,
+	photoURL,
+	avatarURL,
+	postMessage
+) =>
+	db.ref(`posts/${id}`).set({
+		username,
+		photoURL,
+		avatarURL,
+		postMessage
+	});
