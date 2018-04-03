@@ -10,9 +10,7 @@ import * as routes from "../../constants/routes";
 const INITIAL_STATE = {
 	username: "",
 	email: "",
-	avatarURL: 0,
-	photoURL: 0,
-	postMessage: 0,
+
 	passwordOne: "",
 	passwordTwo: "",
 	error: null
@@ -29,29 +27,15 @@ class RegisterForm extends React.Component {
 	}
 
 	onSubmit = event => {
-		const {
-			username,
-			email,
-			passwordOne,
-			avatarURL,
-			photoURL,
-			postMessage
-		} = this.state;
+		const { username, email, passwordOne } = this.state;
 
 		const { history } = this.props;
 
 		auth
 			.CreateUser(email, passwordOne)
 			.then(authUser => {
-				db.doCreateUser(authUser.uid, username, email, avatarURL);
 				db
-					.doCreatePostUser(
-						authUser.uid,
-						username,
-						photoURL,
-						avatarURL,
-						postMessage
-					)
+					.doCreateUser(authUser.uid, username, email)
 					.then(() => {
 						this.setState(() => ({ ...INITIAL_STATE }));
 						history.push(routes.HOME);
