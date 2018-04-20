@@ -14,8 +14,11 @@ class PostEditor extends Component {
 		super(props);
 
 		this.state = {
+			//	posts: ["hello world"],
+			postBody: "",
 			postText: "",
-			postImages: "",
+			postMedia: "",
+
 			postHeader: "",
 			username: "",
 
@@ -38,13 +41,13 @@ class PostEditor extends Component {
 	};
 
 	handleUploadSuccess = filename => {
-		this.setState({ postImages: filename, progress: 100, isUploading: false });
+		this.setState({ postMedia: filename, progress: 100, isUploading: false });
 		firebase
 			.storage()
 			.ref("post-Img")
 			.child(filename)
 			.getDownloadURL()
-			.then(url => this.setState({ postImages: url }));
+			.then(url => this.setState({ postMedia: url }));
 		//	.then(this.updateProfilePost);
 	};
 
@@ -61,7 +64,7 @@ class PostEditor extends Component {
 
 	handleImgToPost = event => {
 		this.setState({
-			postImages: event.target.postImages
+			postMedia: event.target.postMedia
 		});
 	};
 
@@ -71,10 +74,23 @@ class PostEditor extends Component {
 		});
 	};
 
+	//	createPost = () => {
+	//	const newState = Object.assign({}, this.state);
+	//	newState.postBody.push(this.state.postMedia, this.state.postText);
+	//	newState.postMeida = "";
+	//	newState.postText = "";
+	//	this.setState(newState);
+	//	};
+
 	createPost = () => {
-		this.props.addPost(this.state.postImages, this.state.postText);
+		this.props.createPost(
+			this.state.postMedia,
+			this.state.postText,
+			this.state.username
+		);
 		this.setState({
-			postImages: "",
+			username: "",
+			postMeida: "",
 			postText: ""
 		});
 		//this.setState({ username: username });
@@ -83,16 +99,16 @@ class PostEditor extends Component {
 	render() {
 		//	const { authUser } = this.props;
 
-		const { postText, postImages } = this.state;
+		const { postText, postMedia } = this.state;
 
-		const isInvalid = postText === "" || postImages === "";
+		const isInvalid = postText === "" || postMedia === "";
 
 		return (
 			<Card className="post-input">
 				{this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-				{this.state.postImages && (
-					<img className="post-image" src={this.state.postImages} />
-				)}
+				{this.state.postMedia &&
+					(<img className="post-image" src={this.state.postMedia} />,
+					<video className="post-image" src={this.state.postMedia} />)}
 
 				<CardContent className="post-body">
 					<TextField
@@ -108,7 +124,8 @@ class PostEditor extends Component {
 					<FileUploader
 						onClick={this.updateProfilePost}
 						className="postImageUpload"
-						accept="image/*"
+						accept="image/*|video/*"
+						multiple={false}
 						name="postImageUpload"
 						randomizeFilename
 						storageRef={firebase.storage().ref("post-Img")}
@@ -116,7 +133,7 @@ class PostEditor extends Component {
 						onUploadError={this.handleUploadError}
 						onUploadSuccess={this.handleUploadSuccess}
 						onProgress={this.handleProgress}
-						filename={this.state.postImages}
+						filename={this.state.postMedia}
 					/>
 				</CardContent>
 				<Button
@@ -134,7 +151,7 @@ class PostEditor extends Component {
 
 PostEditor.contextTypes = {
 	authUser: PropTypes.object,
-	addPost: PropTypes.func
+	createPost: PropTypes.func
 };
 
 const authCondition = authUser => !!authUser;

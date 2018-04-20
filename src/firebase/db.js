@@ -9,7 +9,7 @@ export const doCreateUser = (id, username, email, avatarURL) =>
 
 export const onceGetUsers = () => db.ref("users").once("value");
 
-export const onceGetPosts = () => db.ref("posts").once("value");
+export const onceGetPosts = () => db.ref("postsing").once("value");
 
 export const doCreatePostUser = (
 	id,

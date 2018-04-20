@@ -8,7 +8,7 @@ import Card, {
 	CardContent,
 	CardActions
 } from "material-ui/Card";
-class Content extends React.Component {
+class AllPostsContent extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -16,12 +16,12 @@ class Content extends React.Component {
 	render() {
 		//{console.log(JSON.stringify("The body"+this.props.postBody))}
 		//console.log("recalled content");
-		const { postMedia, postText, allUserPosts } = this.props;
+		const { postMedia, postText, allUsersPosts } = this.props;
 		//console.log(this.props.postMedia);
 		return (
 			<div>
-				{allUserPosts
-					.map((post, postIndex) => (
+				{allUsersPosts
+					.map((allPost, postIndex) => (
 						<div key={postIndex}>
 							<Card className="post-received">
 								<CardHeader title={this.props.username} />
@@ -29,11 +29,11 @@ class Content extends React.Component {
 
 								<CardContent className="post-content">
 									<div className="station">
-										<img className="feed-image" src={post.postMedia} />
+										<img className="feed-image" src={allPost.postMedia} />
 
 										<Divider />
 										<div>
-											<h2>{post.postText}</h2>
+											<h2>{allPost.postText}</h2>
 										</div>
 									</div>
 								</CardContent>
@@ -46,4 +46,4 @@ class Content extends React.Component {
 	}
 }
 
-export default Content;
+export default AllPostsContent;

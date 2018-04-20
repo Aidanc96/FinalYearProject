@@ -8,7 +8,7 @@ import Card, {
 	CardContent,
 	CardActions
 } from "material-ui/Card";
-class Content extends React.Component {
+class VideoContent extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -16,7 +16,7 @@ class Content extends React.Component {
 	render() {
 		//{console.log(JSON.stringify("The body"+this.props.postBody))}
 		//console.log("recalled content");
-		const { postMedia, postText, allUserPosts } = this.props;
+		const { postVideoMedia, postText, allUserPosts } = this.props;
 		//console.log(this.props.postMedia);
 		return (
 			<div>
@@ -29,8 +29,7 @@ class Content extends React.Component {
 
 								<CardContent className="post-content">
 									<div className="station">
-										<img className="feed-image" src={post.postMedia} />
-
+										<video className="feed-image" src={post.postVideoMedia} />
 										<Divider />
 										<div>
 											<h2>{post.postText}</h2>
@@ -46,4 +45,4 @@ class Content extends React.Component {
 	}
 }
 
-export default Content;
+export default VideoContent;
