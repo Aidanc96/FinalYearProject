@@ -1,7 +1,11 @@
 import React from "react";
 
 import "../css/content.css";
+
+import CommentEditor from "../comment/commentEditor";
 import Divider from "material-ui/Divider";
+import ExpandMoreIcon from "material-ui-icons/ExpandMore";
+import Collapse from "material-ui/transitions/Collapse";
 import Card, {
 	CardHeader,
 	CardMedia,
@@ -16,7 +20,8 @@ class AllPostsContent extends React.Component {
 	render() {
 		//{console.log(JSON.stringify("The body"+this.props.postBody))}
 		//console.log("recalled content");
-		const { postMedia, postText, allUsersPosts } = this.props;
+		const { postMedia, postText, allUsersPosts, username } = this.props;
+		//	const Count = require("react-count").OnlineCount;
 		//console.log(this.props.postMedia);
 		return (
 			<div>
@@ -24,7 +29,7 @@ class AllPostsContent extends React.Component {
 					.map((allPost, postIndex) => (
 						<div key={postIndex}>
 							<Card className="post-received">
-								<CardHeader title={this.props.username} />
+								<CardHeader title={allPost.username} />
 								<Divider />
 
 								<CardContent className="post-content">
@@ -33,10 +38,15 @@ class AllPostsContent extends React.Component {
 
 										<Divider />
 										<div>
-											<h2>{allPost.postText}</h2>
+											<h3>{allPost.postText}</h3>
+											<Divider />
+											<p>Comment's</p>
 										</div>
 									</div>
 								</CardContent>
+								<Collapse>
+									<CardContent>Comment Section</CardContent>
+								</Collapse>
 							</Card>
 						</div>
 					))

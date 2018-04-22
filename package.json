@@ -10,6 +10,7 @@
 		"material-ui-icons": "^1.0.0-beta.36",
 		"prettier": "^1.11.1",
 		"react": "^16.2.0",
+		"react-count": "^0.2.4",
 		"react-dom": "^16.2.0",
 		"react-firebase-file-uploader": "^2.4.1",
 		"react-redux": "^5.0.7",

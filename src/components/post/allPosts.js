@@ -14,12 +14,12 @@ class AllUsersPosts extends React.Component {
 		this.state = {
 			allUsersPosts: [],
 			//		username: "",
-			postMedia: [],
+			allPostMedia: [],
 
 			postVideoMedia: [],
 
 			//		postVideos: [],
-			postText: [],
+			allPostText: [],
 			//	avatarURL: "",
 			loading: true
 		};

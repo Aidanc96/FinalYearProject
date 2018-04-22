@@ -127,7 +127,7 @@ class Post extends React.Component {
 
 	render() {
 		if (this.state.loading) {
-			return <div style={{ textAlign: "center" }}>loading</div>;
+			return <div style={{ textAlign: "center" }}>No Posts!</div>;
 		}
 		//const postList = this.state.postList.map(Content => <div />);
 

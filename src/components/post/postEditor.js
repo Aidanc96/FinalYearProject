@@ -51,6 +51,23 @@ class PostEditor extends Component {
 		//	.then(this.updateProfilePost);
 	};
 
+	componentDidMount() {
+		firebase
+			.database()
+			.ref("users/" + firebase.auth().currentUser.uid)
+			.once("value")
+			.then(snapshot => {
+				this.setState({
+					username: snapshot.val() && snapshot.val().username
+				});
+
+				//this.setState({ username: username });
+				//console.log("username " + username);
+			});
+		//this.setState({ email: this.state.email });
+		//	console.log("after " + this.state.avatarURL);
+	}
+
 	//	updateProfilePost = () => {
 	//	firebase
 	//		.database()
@@ -60,6 +77,13 @@ class PostEditor extends Component {
 	//	postMessage: this.state.postMessage
 	//	});
 	//console.log("after " + this.state.postPhoto);
+	//	};
+
+	//	handleUsernameToPost = event => {
+	//	this.setState({
+	//		useranme: event.target.username
+	//	});
+	//	console.log("user" + this.state.username);
 	//	};
 
 	handleImgToPost = event => {
@@ -106,9 +130,10 @@ class PostEditor extends Component {
 		return (
 			<Card className="post-input">
 				{this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-				{this.state.postMedia &&
-					(<img className="post-image" src={this.state.postMedia} />,
-					<video className="post-image" src={this.state.postMedia} />)}
+				{this.state.postMedia && (
+					<img className="post-image" src={this.state.postMedia} />
+				)}
+				{/* <video className="post-image" src={this.state.postMedia} />)*/}
 
 				<CardContent className="post-body">
 					<TextField

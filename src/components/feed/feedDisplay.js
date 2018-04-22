@@ -56,13 +56,17 @@ class FeedDisplay extends Component {
 			postHeader: postHeader
 		});
 		}
+
+
 */
 
 	onClick = e => {
 		this.setState({ temp: "lmao" });
 	};
+
 	createPost(postMedia, postText, username) {
-		const postToSave = { postMedia, postText, username };
+		const postToSave = { postMedia, postText };
+		const postToAllPosts = { postMedia, postText, username };
 		firebase
 			.database()
 			.ref("posting/" + firebase.auth().currentUser.uid + "/posts")
@@ -73,7 +77,7 @@ class FeedDisplay extends Component {
 					.database()
 					.ref("allPosts/")
 					.push()
-					.set(postToSave);
+					.set(postToAllPosts);
 			});
 	}
 
