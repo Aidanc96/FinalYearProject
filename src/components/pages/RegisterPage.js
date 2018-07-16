@@ -11,7 +11,7 @@ const RegisterPage = ({ history }) => (
 		<Header />
 		<div align="center" className="registerPage">
 			<Typography variant="display2" color="default">
-				Register Page
+				Register
 			</Typography>
 
 			<RegisterForm history={history} />

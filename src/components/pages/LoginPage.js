@@ -13,7 +13,7 @@ const LoginPage = ({ history }) => (
 		<Header />
 		<div align="center" className="logInPage">
 			<Typography variant="display2" color="default">
-				Login Page
+				Login
 			</Typography>
 
 			<LoginForm history={history} />
