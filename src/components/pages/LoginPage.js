@@ -5,12 +5,17 @@ import { withRouter } from "react-router-dom";
 import { PasswordForgetLink } from "../forms/PasswordForgetForm";
 
 import Header from "../Layouts/Header";
+import "../css/logInPage.css";
+import Typography from "@material-ui/core/Typography";
 
 const LoginPage = ({ history }) => (
 	<div>
 		<Header />
-		<div align="center">
-			<h1>Login Page</h1>
+		<div align="center" className="logInPage">
+			<Typography variant="display2" color="default">
+				Login Page
+			</Typography>
+
 			<LoginForm history={history} />
 			<PasswordForgetLink />
 		</div>
