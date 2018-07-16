@@ -2,10 +2,15 @@ import React from "react";
 
 import PasswordForgetForm from "../forms/PasswordForgetForm";
 
+import Header from "../Layouts/Header";
+
 const PasswordForgetPage = () => (
 	<div>
-		<h1>PasswordForget</h1>
-		<PasswordForgetForm />
+		<Header />
+		<div>
+			<h1 align="center">PasswordForget</h1>
+			<PasswordForgetForm />
+		</div>
 	</div>
 );
 

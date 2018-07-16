@@ -16,6 +16,8 @@ import Card, { CardActions, CardContent } from "material-ui/Card";
 import { db, auth } from "../../firebase";
 import FileUploader from "react-firebase-file-uploader";
 
+import Header from "../Layouts/Header";
+
 const INITIAL_STATE = {
 	username: "",
 	email: "",
@@ -85,37 +87,42 @@ class AccountPage extends React.Component {
 		const { authUser } = this.props;
 		return (
 			<div>
-				<h1 align="center" className="accountPageText">
-					Hello {this.state.username}
-				</h1>
-				<br />
-				<PasswordChangeForm />
+				<Header />
+				<div>
+					<h1 align="center" className="accountPageText">
+						Hello {this.state.username}
+					</h1>
+					<br />
+					<PasswordChangeForm />
 
-				<Card className="avatar">
-					<CardContent className="avatar-content">
-						<span>
-							<label>Avatar </label>
-							{this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-							{this.state.avatarURL && (
-								<img className="avatar-image" src={this.state.avatarURL} />
-							)}
-							<FileUploader
-								onClick={this.updateProfile}
-								className="avatar-submit"
-								accept="image/*"
-								name="avatar"
-								randomizeFilename
-								storageRef={firebase.storage().ref("profile-pic")}
-								onUploadStart={this.handleUploadStart}
-								onUploadError={this.handleUploadError}
-								onUploadSuccess={this.handleUploadSuccess}
-								onProgress={this.handleProgress}
-							/>
-						</span>
-					</CardContent>
-				</Card>
+					<Card className="avatar">
+						<CardContent className="avatar-content">
+							<span>
+								<label>Avatar </label>
+								{this.state.isUploading && (
+									<p>Progress: {this.state.progress}</p>
+								)}
+								{this.state.avatarURL && (
+									<img className="avatar-image" src={this.state.avatarURL} />
+								)}
+								<FileUploader
+									onClick={this.updateProfile}
+									className="avatar-submit"
+									accept="image/*"
+									name="avatar"
+									randomizeFilename
+									storageRef={firebase.storage().ref("profile-pic")}
+									onUploadStart={this.handleUploadStart}
+									onUploadError={this.handleUploadError}
+									onUploadSuccess={this.handleUploadSuccess}
+									onProgress={this.handleProgress}
+								/>
+							</span>
+						</CardContent>
+					</Card>
 
-				<FeedDisplay {...this.state} />
+					<FeedDisplay {...this.state} />
+				</div>
 			</div>
 		);
 	}

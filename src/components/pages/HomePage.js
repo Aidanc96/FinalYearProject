@@ -7,6 +7,8 @@ import { db } from "../../firebase";
 
 import LandingFeedDisplay from "../feed/landingFeedDisplay";
 
+import Header from "../Layouts/Header";
+
 class HomePage extends Component {
 	constructor(props) {
 		super(props);
@@ -25,12 +27,15 @@ class HomePage extends Component {
 	render() {
 		const { users } = this.state;
 		return (
-			<div align="center">
-				<h1 align="center">Home</h1>
-				{/*}	<p align="center">This can be seen by logged in users</p>
+			<div>
+				<Header />
+				<div align="center">
+					<h1 align="center">Home</h1>
+					{/*}	<p align="center">This can be seen by logged in users</p>
 				{!!users && <UserList users={users} />}*/}
 
-				<LandingFeedDisplay {...this.state} />
+					<LandingFeedDisplay {...this.state} />
+				</div>
 			</div>
 		);
 	}

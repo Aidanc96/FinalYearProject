@@ -4,11 +4,16 @@ import { withRouter } from "react-router-dom";
 
 import { PasswordForgetLink } from "../forms/PasswordForgetForm";
 
+import Header from "../Layouts/Header";
+
 const LoginPage = ({ history }) => (
-	<div align="center">
-		<h1>Login Page</h1>
-		<LoginForm history={history} />
-		<PasswordForgetLink />
+	<div>
+		<Header />
+		<div align="center">
+			<h1>Login Page</h1>
+			<LoginForm history={history} />
+			<PasswordForgetLink />
+		</div>
 	</div>
 );
 

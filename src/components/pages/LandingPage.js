@@ -8,7 +8,7 @@ import "../css/landingPage.css";
 
 import Button from "material-ui/Button";
 
-import Background from "../backgroundImage/newYork.jpg";
+import Header from "../Layouts/Header";
 
 class LandingPage extends React.Component {
 	render() {
