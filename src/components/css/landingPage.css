@@ -8,13 +8,24 @@
 }
 
 .welcome {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 600px;
+	height: 200px;
+	margin-top: -200px; /* Half the height */
+	margin-left: -300px; /* Half the width */
 }
 
 .welcomeBtnTxt {
 	text-decoration: none;
-	color: white;
+	color: Black;
 }
 
-.welcomeText {
-	color: white;
+.logoText {
+	padding: 10px;
+}
+
+.welcomePaper {
+	padding-bottom: 10px;
 }
