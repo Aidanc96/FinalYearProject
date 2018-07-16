@@ -48,6 +48,7 @@ class RegisterForm extends React.Component {
 				this.setState(byPropKey("error", error));
 			});
 		event.preventDefault();
+		console.log(JSON.stringify());
 	};
 
 	render() {

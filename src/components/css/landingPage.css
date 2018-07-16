@@ -1,2 +1,20 @@
-.image-background {
+.welcomeVideo {
+	width: 100%;
+	top: 0%;
+
+	z-index: -1;
+	padding: 0;
+	position: fixed;
+}
+
+.welcome {
+}
+
+.welcomeBtnTxt {
+	text-decoration: none;
+	color: white;
+}
+
+.welcomeText {
+	color: white;
 }

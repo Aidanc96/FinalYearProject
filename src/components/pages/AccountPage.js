@@ -8,10 +8,11 @@ import PasswordChangeForm from "../password/PasswordChange";
 import withAuthorization from "../authorization/withAuthorization";
 
 import Post from "../post/post";
+import FeedDisplay from "../feed/feedDisplay";
 
 import firebase from "firebase";
 import Card, { CardActions, CardContent } from "material-ui/Card";
-import FeedDisplay from "../feed/feedDisplay";
+
 import { db, auth } from "../../firebase";
 import FileUploader from "react-firebase-file-uploader";
 
@@ -59,6 +60,7 @@ class AccountPage extends React.Component {
 			.update({
 				avatarURL: this.state.avatarURL
 			});
+		console.log("User " + this.state.account);
 	};
 
 	componentDidMount() {
@@ -71,7 +73,7 @@ class AccountPage extends React.Component {
 					username: snapshot.val() && snapshot.val().username,
 					avatarURL: snapshot.val() && snapshot.val().avatarURL
 				});
-
+				console.log("User " + this.state.account);
 				//this.setState({ username: username });
 				//console.log("username " + username);
 			});

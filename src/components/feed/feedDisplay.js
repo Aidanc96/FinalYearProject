@@ -13,52 +13,8 @@ class FeedDisplay extends Component {
 
 		this.createPost = this.createPost.bind(this);
 
-		this.state = {
-			//	postBody: [],
-			//	postText: [],
-			//		postMedia: [],
-			//	postHeader: [],
-			//	temp: ""
-		};
+		this.state = {};
 	}
-
-	/*		componentWillMount = () => {
-		const { updateLocalState } = this;
-		firebase
-			.database()
-			.ref("posting/" + firebase.auth().currentUser.uid)
-			.on("child_added", snapshot => {
-				const response = snapshot.val();
-				updateLocalState(response);
-			});
-	};
-
-		updateLocalState(response) {
-			const postBody = this.state.postBody;
-			const postText = this.state.postText;
-			const postMeida = this.state.postMedia;
-			const postHeader = this.state.postHeader;
-			const brokenDownPostBody = response.postBody;
-			const brokenDownPostHeader = response.postHeader;
-			const brokenDownPostMedia = response.postMedia;
-			const brokenDownPostText = response.postText.split(/[\r\n]/g);
-
-			postBody.push(brokenDownPostBody),
-			postText.push(brokenDownPostText),
-			postMedia.push(brokenDownPostMedia),
-
-			postHeader.push(brokenDownPostHeader);
-
-		this.setState({
-			postBody: postBody,
-			postText: postText,
-			postMedia: postMedia,
-			postHeader: postHeader
-		});
-		}
-
-
-*/
 
 	onClick = e => {
 		this.setState({ temp: "lmao" });

@@ -3,6 +3,8 @@ import React from "react";
 import "../css/content.css";
 
 import CommentEditor from "../comment/commentEditor";
+import CommentFeed from "../comment/commentFeed";
+
 import Divider from "material-ui/Divider";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 import Collapse from "material-ui/transitions/Collapse";
@@ -40,13 +42,10 @@ class AllPostsContent extends React.Component {
 										<div>
 											<h3>{allPost.postText}</h3>
 											<Divider />
-											<p>Comment's</p>
 										</div>
 									</div>
 								</CardContent>
-								<Collapse>
-									<CardContent>Comment Section</CardContent>
-								</Collapse>
+								<CommentFeed />
 							</Card>
 						</div>
 					))

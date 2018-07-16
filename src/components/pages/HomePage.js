@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import "../css/homePage.css";
 import withAuthorization from "../authorization/withAuthorization";
@@ -26,22 +27,25 @@ class HomePage extends Component {
 		return (
 			<div align="center">
 				<h1 align="center">Home</h1>
-				<p align="center">This can be seen by logged in users</p>
-				{!!users && <UserList users={users} />}
+				{/*}	<p align="center">This can be seen by logged in users</p>
+				{!!users && <UserList users={users} />}*/}
 
 				<LandingFeedDisplay {...this.state} />
 			</div>
 		);
 	}
 }
-const UserList = ({ users }) => (
-	<div>
+//const UserList = ({ users }) => (
+/*	<div>
 		<h2>List of Usernames of Users</h2>
 		<p>(Saved on Sign Up in Firebase Database)</p>
 
 		{Object.keys(users).map(key => <div key={key}>{users[key].username}</div>)}
-	</div>
-);
+	</div>*/
+//);
+HomePage.contextTypes = {
+	authUser: PropTypes.object
+};
 
 const authCondition = authUser => !!authUser;
 
