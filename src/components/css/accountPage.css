@@ -33,12 +33,13 @@
 /* Avatar*/
 
 .avatar {
-	width: 400px;
-	height: 420px;
 	position: absolute;
-	top: 15%;
-	right: 0;
-	left: 78%;
+	top: 40%;
+	left: 92%;
+	width: 400px;
+	height: 300px;
+	margin-top: -200px; /* Half the height */
+	margin-left: -300px; /* Half the width */
 }
 
 .avatar-content {

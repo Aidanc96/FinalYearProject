@@ -2,6 +2,8 @@ import React from "react";
 
 import "../css/content.css";
 import Divider from "material-ui/Divider";
+import Typography from "@material-ui/core/Typography";
+
 import Card, {
 	CardHeader,
 	CardMedia,
@@ -33,7 +35,13 @@ class Content extends React.Component {
 
 										<Divider />
 										<div>
-											<h2>{post.postText}</h2>
+											<Typography
+												align="center"
+												variant="headline"
+												color="default"
+											>
+												{post.postText}
+											</Typography>
 										</div>
 									</div>
 								</CardContent>

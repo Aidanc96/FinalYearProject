@@ -12,6 +12,7 @@ import FeedDisplay from "../feed/feedDisplay";
 
 import firebase from "firebase";
 import Card, { CardActions, CardContent } from "material-ui/Card";
+import Typography from "@material-ui/core/Typography";
 
 import { db, auth } from "../../firebase";
 import FileUploader from "react-firebase-file-uploader";
@@ -89,16 +90,16 @@ class AccountPage extends React.Component {
 			<div>
 				<Header />
 				<div>
-					<h1 align="center" className="accountPageText">
-						Hello {this.state.username}
-					</h1>
+					<Typography align="center" variant="display2" color="default">
+						{this.state.username}
+					</Typography>
 					<br />
 					<PasswordChangeForm />
 
 					<Card className="avatar">
 						<CardContent className="avatar-content">
 							<span>
-								<label>Avatar </label>
+								<label>Avatar</label>
 								{this.state.isUploading && (
 									<p>Progress: {this.state.progress}</p>
 								)}
