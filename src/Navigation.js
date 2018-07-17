@@ -18,13 +18,13 @@ Navigation.contextTypes = {
 const LoggedInAuth = () => (
 	<div style={styles.menu}>
 		<Link to={routes.HOME} style={styles.link}>
-			<Button variant="raised" color="primary">
+			<Button variant="raised" color="default">
 				Home
 			</Button>
 		</Link>
 
 		<Link to={routes.ACCOUNT} style={styles.link}>
-			<Button variant="raised" color="primary">
+			<Button variant="raised" color="default">
 				Account
 			</Button>
 		</Link>
@@ -36,13 +36,13 @@ const LoggedInAuth = () => (
 const LogInAuth = () => (
 	<div>
 		<Link to={routes.LANDING} style={styles.link}>
-			<Button variant="raised" color="primary">
+			<Button variant="raised" color="default">
 				Welcome
 			</Button>
 		</Link>
 
 		<Link to={routes.LOGIN} style={styles.link}>
-			<Button variant="raised" color="primary">
+			<Button variant="raised" color="secondary">
 				Login
 			</Button>
 		</Link>

@@ -19,7 +19,7 @@ export default class Header extends React.Component {
 	render() {
 		return (
 			<div style={styles.root}>
-				<AppBar className="appBar" position="static">
+				<AppBar className="appBar" position="static" color="default">
 					<Toolbar>
 						<IconButton
 							style={styles.menuButton}

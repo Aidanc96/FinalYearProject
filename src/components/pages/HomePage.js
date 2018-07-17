@@ -9,6 +9,8 @@ import LandingFeedDisplay from "../feed/landingFeedDisplay";
 
 import Header from "../Layouts/Header";
 
+import Typography from "@material-ui/core/Typography";
+
 class HomePage extends Component {
 	constructor(props) {
 		super(props);
@@ -30,7 +32,9 @@ class HomePage extends Component {
 			<div>
 				<Header />
 				<div align="center">
-					<h1 align="center">Home</h1>
+					<Typography align="center" variant="display2" color="default">
+						Home
+					</Typography>
 					{/*}	<p align="center">This can be seen by logged in users</p>
 				{!!users && <UserList users={users} />}*/}
 

@@ -7,6 +7,9 @@ import AllPostsContent from "./allPostsContent";
 
 import VideoContent from "./videoContent";
 
+import CircularProgress from "@material-ui/core/CircularProgress";
+import "../css/allPosts.css";
+
 class AllUsersPosts extends React.Component {
 	constructor(props) {
 		super(props);
@@ -58,7 +61,11 @@ class AllUsersPosts extends React.Component {
 
 	render() {
 		if (this.state.loading) {
-			return <div style={{ textAlign: "center" }}>loading</div>;
+			return (
+				<div className="loadingHomeFeed">
+					<CircularProgress align="center" size={50} />
+				</div>
+			);
 		}
 		//const postList = this.state.postList.map(Content => <div />);
 
