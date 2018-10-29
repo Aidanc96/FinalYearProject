@@ -1,3 +1,9 @@
 .post-Image.img {
-	width: 300px;
+  width: 300px;
+}
+
+.station {
+  display: flex;
+  height: 450px;
+  flex-direction: column;
 }
